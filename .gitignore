@@ -91,3 +91,4 @@ build/
 .rvmrc
 
 # Created by .ignore support plugin (hsz.mobi)
+.local_storage
