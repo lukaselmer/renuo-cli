@@ -13,8 +13,8 @@ Style/NonNilCheck:
 AllCops:
   Include:
     - '**/Rakefile'
-    - 'app/**/*'
+    - 'lib/**/*'
+    - '*.gemspec'
   Exclude:
     - 'bin/**/*'
-    - 'media/**/*'
 
