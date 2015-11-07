@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/renuo/renuo-cli.svg?branch=master)](https://travis-ci.org/renuo/renuo-cli)
+[![Coverage Status](https://coveralls.io/repos/renuo/renuo-cli/badge.svg?branch=master&service=github)](https://coveralls.io/github/renuo/renuo-cli?branch=master)
+
 # Renuo::Cli
 
 The Renuo command line. Used for various (internal) stuff.
