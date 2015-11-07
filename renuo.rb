@@ -31,4 +31,3 @@ command :config do |c|
     say('stored the api key')
   end
 end
-

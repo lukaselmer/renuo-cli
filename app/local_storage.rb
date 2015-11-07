@@ -28,4 +28,3 @@ class LocalStorage
     write_config({}) unless File.exist? '.local_storage'
   end
 end
-
