@@ -14,6 +14,7 @@ AllCops:
   Include:
     - '**/Rakefile'
     - 'lib/**/*'
+    - 'spec/**/*'
     - '*.gemspec'
   Exclude:
     - 'bin/**/*'
