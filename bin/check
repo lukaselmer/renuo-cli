@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+if ! command -v bundle > /dev/null; then
+  source ~/.zshrc
+fi
+
+bundle exec rubocop -D -c .rubocop.yml
+RC=$?
+if [ ! $RC -eq 0 ]; then
+  echo 'rubocop detected issues!'
+  bundle exec rubocop -a -D -c .rubocop.yml
+  echo 'Tried to auto correct the issues, but must be reviewed manually. Commit aborted!'
+  exit 1
+fi
+
