@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 
-ruby File.read('.ruby-version').strip
+gemspec
 
 gem 'commander'
 
 group :development do
   gem 'rubocop', require: false
+  gem 'pry'
 end
 

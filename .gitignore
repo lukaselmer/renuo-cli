@@ -92,3 +92,12 @@ build/
 
 # Created by .ignore support plugin (hsz.mobi)
 .local_storage
+/.bundle/
+/.yardoc
+/Gemfile.lock
+/_yardoc/
+/coverage/
+/doc/
+/pkg/
+/spec/reports/
+/tmp/
