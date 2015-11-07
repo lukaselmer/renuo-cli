@@ -14,7 +14,7 @@ command 'display-name'.to_sym do |c|
   c.description = ''
   c.example 'description', 'command example'
   c.option '--delete', 'Deletes the current name'
-  c.action do |args, options|
+  c.action do |args, _options|
     NameDisplay.new.display_name(args)
   end
 end
@@ -25,8 +25,8 @@ command :config do |c|
   c.description = ''
   c.example 'description', 'command example'
   c.option '--some-switch', 'Some switch that does something'
-  c.action do |args, options|
-    key = ask('API Key?') { |q| q.echo = "*" }
+  c.action do |_args, _options|
+    key = ask('API Key?') { |q| q.echo = '*' }
     LocalStorage.new.store(:api_key, key)
     say('stored the api key')
   end

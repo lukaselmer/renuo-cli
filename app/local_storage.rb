@@ -14,6 +14,7 @@ class LocalStorage
   end
 
   private
+
   def load_config
     JSON.parse(File.read('.local_storage'))
   end
@@ -24,7 +25,7 @@ class LocalStorage
   end
 
   def setup
-    write_config({}) unless File.exists? '.local_storage'
+    write_config({}) unless File.exist? '.local_storage'
   end
 end
 
