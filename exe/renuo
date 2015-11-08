@@ -1,2 +1,2 @@
 #!/usr/bin/env ruby
-load 'renuo/cli'
+require 'renuo/cli'

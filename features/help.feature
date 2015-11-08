@@ -6,4 +6,4 @@ Feature: Help
   Scenario: General help
     When I run `renuo -h`
     Then the output should contain "renuo"
-    Then the output should contain "set-name"
+    Then the output should contain "display-name"
