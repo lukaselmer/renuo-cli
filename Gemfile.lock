@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     renuo-cli (0.1.0)
+      commander
 
 GEM
   remote: https://rubygems.org/
@@ -32,7 +33,7 @@ GEM
     parser (2.2.3.0)
       ast (>= 1.1, < 3.0)
     powerpack (0.1.1)
-    pry (0.10.1)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -81,7 +82,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.10)
-  commander
   coveralls
   pry
   rake (~> 10.0)
