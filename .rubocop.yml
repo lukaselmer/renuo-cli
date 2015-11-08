@@ -18,4 +18,5 @@ AllCops:
     - '*.gemspec'
   Exclude:
     - 'bin/**/*'
+    - 'lib/renuo/cli.rb'
 

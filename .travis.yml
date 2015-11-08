@@ -9,5 +9,5 @@ before_install: gem install bundler -v 1.10.6
 install:
   - bundle install --retry=3
 script:
-  - bundle exec rspec
+  - bundle exec rake test_with_coveralls
   - bundle exec rubocop
