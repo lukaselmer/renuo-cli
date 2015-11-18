@@ -10,6 +10,9 @@ Style/Documentation:
 Style/NonNilCheck:
   IncludeSemanticChanges: true
 
+Metrics/ClassLength:
+  Max: 120
+
 AllCops:
   Include:
     - '**/Rakefile'
