@@ -3,6 +3,7 @@ require 'rubygems'
 require 'renuo/cli/app/name_display'
 require 'renuo/cli/app/local_storage'
 require 'renuo/cli/app/migrate_to_github'
+require 'renuo/cli/app/list_large_git_files'
 
 module Renuo
   class CLI
@@ -25,9 +26,9 @@ module Renuo
 
       command :config do |c|
         c.syntax = 'renuo config [options]'
-        c.summary = ''
+        c.summary = 'Setup the config (API keys)'
         c.description = 'Setup the config (API keys)'
-        c.action do |_args, _options|
+        c.action do
           key = ask('API Key?') { |q| q.echo = '*' }
           LocalStorage.new.store(:api_key, key)
           say('stored the api key')
@@ -41,6 +42,18 @@ module Renuo
         c.example 'migrate the renuo-cli project', 'renuo migrate-to-github renuo-cli'
         c.action do |args, _options|
           MigrateToGithub.new(args.first).run
+        end
+      end
+
+      command 'list-large-git-files' do |c|
+        c.syntax = 'renuo list-large-git-files'
+        c.summary = 'Lists the 5 largest files in a git repository. Warning: must be a bare checkout of the repo!'
+        c.description = "Lists the 5 largest files in a git repository.\nWarning: must be a bare checkout of the repo!"
+        c.example 'list the 5 largest git files of github.com/renuo/renuo-cli',
+                  'git clone --bare git@github.com:renuo/renuo-cli.git && '\
+                  'cd renuo-cli.git && renuo list-large-git-files'
+        c.action do
+          ListLargeGitFiles.new.run
         end
       end
     end
