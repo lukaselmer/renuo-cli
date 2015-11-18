@@ -19,9 +19,11 @@ class MigrateToGithub
   private
 
   def check_pwd
-    say("Project to transfer is called '#{@project_name}'. Thus, we will create and delete the directories")
+    say("Project to transfer is called '#{@project_name}'. For the transfer, we will need these temporary directories")
     say("* #{@pwd}/#{@project_name}")
     say("* #{@pwd}/#{@project_name}.git")
+    say('If you want to use different directories, cd to a another directory, and run the command again.')
+    say("E.g.: cd ~/tmp ; mkdir transfer ; cd transfer ; renuo migrate-to-github #{@project_name}")
     agree('Is that ok?')
   end
 
