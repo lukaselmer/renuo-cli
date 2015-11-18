@@ -5,6 +5,7 @@ class MigrateToGithub
   end
 
   def run
+    return stop unless check_requirements
     return stop unless check_pwd
 
     transfer_git
@@ -17,6 +18,11 @@ class MigrateToGithub
   end
 
   private
+
+  def check_requirements
+    say('Please ensure that hub is installed (brew install hub)')
+    agree('Ready?')
+  end
 
   def check_pwd
     say("Project to transfer is called '#{@project_name}'. For the transfer, we will need these temporary directories")
