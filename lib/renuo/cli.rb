@@ -26,9 +26,9 @@ module Renuo
 
       command :config do |c|
         c.syntax = 'renuo config [options]'
-        c.summary = ''
+        c.summary = 'Setup the config (API keys)'
         c.description = 'Setup the config (API keys)'
-        c.action do |_args, _options|
+        c.action do
           key = ask('API Key?') { |q| q.echo = '*' }
           LocalStorage.new.store(:api_key, key)
           say('stored the api key')
