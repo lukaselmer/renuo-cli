@@ -34,22 +34,22 @@ class MigrateToGithub
   end
 
   def transfer_git
-    `git clone --mirror git@git.renuo.ch:renuo/#{@project_name}.git`
-    `cd #{@project_name}.git && hub create -p renuo/#{@project_name}`
-    `cd #{@project_name}.git && git push --mirror git@github.com:renuo/#{@project_name}.git`
+    puts `git clone --mirror git@git.renuo.ch:renuo/#{@project_name}.git`
+    puts `cd #{@project_name}.git && hub create -p renuo/#{@project_name}`
+    puts `cd #{@project_name}.git && git push --mirror git@github.com:renuo/#{@project_name}.git`
     `rm -rf #{@project_name}.git`
   end
 
   def update_readme
     agree('Let us update the README.md now. Ready?')
 
-    `git clone git@github.com:renuo/#{@project_name}.git`
-    `cd #{@project_name} && git fetch --all && git checkout develop && git pull && git flow init -d`
+    puts `git clone git@github.com:renuo/#{@project_name}.git`
+    puts `cd #{@project_name} && git fetch --all && git checkout develop && git pull && git flow init -d`
     File.write("#{@project_name}/README.md", File.read("#{@project_name}/README.md").gsub('git.renuo.ch', 'github.com'))
 
     update_readme_loop
 
-    `cd #{@project_name} && git commit -m 'migrate to github' && git push --set-upstream origin develop`
+    puts `cd #{@project_name} && git commit -m 'migrate to github' && git push --set-upstream origin develop`
     `rm -rf #{@project_name}`
   end
 
