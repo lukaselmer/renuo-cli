@@ -11,7 +11,7 @@ Style/NonNilCheck:
   IncludeSemanticChanges: true
 
 Metrics/ClassLength:
-  Max: 120
+  Max: 160
 
 AllCops:
   Include:
