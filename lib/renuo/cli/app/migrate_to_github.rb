@@ -13,6 +13,7 @@ class MigrateToGithub
     repo_settings
     check_deploy
     rename_repo
+    replace_other_old_links
     setup_ci
     congrats
   end
@@ -114,6 +115,18 @@ class MigrateToGithub
     say('* Path')
     agree('Ready?')
     `open https://git.renuo.ch/renuo/#{@project_name}/edit`
+  end
+
+  def replace_other_old_links
+    say('Now let\'s replace other old links in the repo!')
+    agree('Ready?')
+    `open https://github.com/renuo/#{@project_name}/search?utf8=%E2%9C%93&q=git.renuo.ch`
+    say('Replace all those links!')
+    agree('Ready?')
+    say('Now let\'s replace other old links in the wiki!')
+    `open https://redmine.renuo.ch/search?q=git.renuo.ch/renuo/#{@project_name}&wiki_pages=1&attachments=0&options=0`
+    say('Replace all those links!')
+    agree('Ready?')
   end
 
   def setup_ci
