@@ -23,7 +23,7 @@ Or install it yourself as:
 
 ## Usage
 
-```
+```sh
 renuo -h
 ```
 
@@ -35,6 +35,21 @@ You can also run `bin/console` for an interactive prompt that will allow you to 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the
 version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version,
 push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Release
+
+```sh
+git flow release start [.....]
+# adjust version.rb
+bundle install
+git commit -av
+git flow release finish [.....]
+git push origin develop:develop
+git push origin master:master
+git checkout master
+bundle exec rake release
+git checkout develop
+```
 
 ## Contributing
 
