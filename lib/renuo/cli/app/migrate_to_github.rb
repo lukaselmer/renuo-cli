@@ -103,9 +103,9 @@ class MigrateToGithub
     `open https://deploy.renuo.ch/deployment_configs`
     say('Now login to the deployment server, and change the remotes. E.g.')
     cd = "cd deployments/#{@project_name}"
-    say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
-    say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
-    say("#{cd}-testing && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
+    say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
+    say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
+    say("#{cd}-testing && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
     agree('Ready?')
   end
 
