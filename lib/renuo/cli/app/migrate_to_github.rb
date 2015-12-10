@@ -120,7 +120,7 @@ class MigrateToGithub
   def replace_other_old_links
     say('Now let\'s replace other old links in the repo!')
     agree('Ready?')
-    `open https://github.com/renuo/#{@project_name}/search?utf8=%E2%9C%93&q=git.renuo.ch`
+    `open https://github.com/renuo/#{@project_name}/search?q=git.renuo.ch`
     say('Replace all those links!')
     agree('Ready?')
     say('Now let\'s replace other old links in the wiki!')
