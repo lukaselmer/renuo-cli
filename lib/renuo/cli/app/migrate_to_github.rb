@@ -103,9 +103,9 @@ class MigrateToGithub
     `open https://deploy.renuo.ch/deployment_configs`
     say('Now login to the deployment server, and change the remotes. E.g.')
     cd = "cd deployments/#{@project_name}"
-    say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
-    say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
-    say("#{cd}-testing && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ..")
+    say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
+    say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
+    say("#{cd}-testing && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
     agree('Ready?')
   end
 
@@ -120,7 +120,7 @@ class MigrateToGithub
   def replace_other_old_links
     say('Now let\'s replace other old links in the repo!')
     agree('Ready?')
-    `open https://github.com/renuo/#{@project_name}/search?utf8=%E2%9C%93&q=git.renuo.ch`
+    `open https://github.com/renuo/#{@project_name}/search?q=git.renuo.ch`
     say('Replace all those links!')
     agree('Ready?')
     say('Now let\'s replace other old links in the wiki!')

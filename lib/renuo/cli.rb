@@ -4,6 +4,7 @@ require 'renuo/cli/app/name_display'
 require 'renuo/cli/app/local_storage'
 require 'renuo/cli/app/migrate_to_github'
 require 'renuo/cli/app/list_large_git_files'
+require 'renuo/cli/app/generate_password'
 
 module Renuo
   class CLI
@@ -54,6 +55,16 @@ module Renuo
                   'cd renuo-cli.git && renuo list-large-git-files'
         c.action do
           ListLargeGitFiles.new.run
+        end
+      end
+
+      command 'generate-password' do |c|
+        c.syntax = 'renuo generate-password'
+        c.summary = 'Generates a phrase of random 0-9a-zA-Z characters. Choose a substring of it as a new password.'
+        c.description = 'Generates a phrase of random 0-9a-zA-Z characters. Choose a substring of it as a new password.'
+        c.example 'renuo generate-password', 'generates a random password'
+        c.action do
+          GeneratePassword.new.run
         end
       end
     end
