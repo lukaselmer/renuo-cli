@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    renuo-cli (0.0.6)
+    renuo-cli (0.0.7)
       commander
 
 GEM
