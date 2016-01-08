@@ -26,7 +26,7 @@ class MigrateToGithub
   end
 
   def check_requirements
-    say('Please ensure that hub is installed (brew install hub)')
+    say('Please ensure that hub is installed (brew install hub) and connected to your account')
     agree('Ready?')
   end
 
@@ -76,37 +76,37 @@ class MigrateToGithub
 
   def general_repo_settings
     say('The repo settings are next')
-    say('Remove the features "Wikis" and "Issues"')
-    say('Close the tab when you are done')
+    say('=> Remove the features "Wikis" and "Issues"')
+    say('=> Close the tab when you are done')
     agree('The browser will open automatically. Ready?')
     `open https://github.com/renuo/#{@project_name}/settings`
   end
 
   def repo_collaborators
-    say("Next, assign Renuo-Team 'Renuo | Master' to project")
+    say("=> Next, assign Renuo-Team 'renuo' to project and grant 'write' permissions")
     agree('Ready?')
     `open https://github.com/renuo/#{@project_name}/settings/collaboration`
   end
 
   def repo_branches
-    say('Choose develop as default branch')
-    say('Protect branches master and develop')
+    say('=> Choose develop as default branch')
+    say('=> Protect branches master and develop')
     agree('Ready?')
     `open https://github.com/renuo/#{@project_name}/settings/branches`
   end
 
   def copy_hooks
-    say('Copy the hooks from gitlab to github. We will open two tabs this time (gitlab and github)')
+    say('=> Copy the hooks from gitlab to github. We will open two tabs this time (gitlab and github)')
     agree('Ready?')
     `open https://github.com/renuo/#{@project_name}/settings/hooks`
     `open https://git.renuo.ch/renuo/#{@project_name}/hooks`
   end
 
   def check_deploy
-    say('Check the deployment scripts for the correct repository')
+    say('=> Check the deployment scripts for the correct repository')
     agree('Ready?')
     `open https://deploy.renuo.ch/deployment_configs`
-    say('Now login to the deployment server, and change the remotes. E.g.')
+    say('=> Now login to the deployment server as www-data, and change the remotes. E.g.')
     cd = "cd deployments/#{@project_name}"
     say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
     say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
@@ -115,9 +115,9 @@ class MigrateToGithub
   end
 
   def rename_repo
-    say("Almost done. Rename the old repo to zzz-old-#{@project_name}")
-    say('* Project name')
-    say('* Path')
+    say("=> Almost done. Rename the old repo to zzz-old-#{@project_name}")
+    say('   * Project name')
+    say('   * Path')
     agree('Ready?')
     `open https://git.renuo.ch/renuo/#{@project_name}/edit`
   end
@@ -126,18 +126,18 @@ class MigrateToGithub
     say('Now let\'s replace other old links in the repo!')
     agree('Ready?')
     `open https://github.com/renuo/#{@project_name}/search?q=git.renuo.ch`
-    say('Replace all those links!')
+    say('=> Replace all those links!')
     agree('Ready?')
-    say('Now let\'s replace other old links in the wiki!')
+    say('=> Now let\'s replace other old links in the wiki!')
     `open https://redmine.renuo.ch/search?q=git.renuo.ch/renuo/#{@project_name}&wiki_pages=1&attachments=0&options=0`
-    say('Replace all those links!')
+    say('=> Replace all those links!')
     agree('Ready?')
   end
 
   def setup_gemnasium
     say('Now the security monitoring: Gemnasium')
-    say('Go to https://gemnasium.com/dashboard and add the new project via GitHub')
-    say("Add new project --> Hosted on GitHub --> Renuo --> Check #{@project_name} and click submit")
+    say('=> Go to https://gemnasium.com/dashboard and add the new project via GitHub')
+    say("=> Add new project --> Hosted on GitHub --> Renuo --> Check #{@project_name} and click submit")
     agree('Ready?')
     `open https://gemnasium.com/dashboard`
   end
@@ -145,7 +145,7 @@ class MigrateToGithub
   def setup_ci
     say('One last thing: CI')
     say('Find your CI script on the old CI:')
-    say('Click on <project> --> Settings --> preview')
+    say('=> Click on <project> --> Settings --> preview')
     agree('Ready?')
     `open https://ci.renuo.ch/`
     say("Enable TravisCI for #{@project_name}")
