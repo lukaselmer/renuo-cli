@@ -8,17 +8,22 @@ class MigrateToGithub
     return stop unless check_requirements
     return stop unless check_pwd
 
+    run_tasks
+  end
+
+  private
+
+  def run_tasks
     transfer_git
     update_readme
     repo_settings
     check_deploy
     rename_repo
     replace_other_old_links
+    setup_gemnasium
     setup_ci
     congrats
   end
-
-  private
 
   def check_requirements
     say('Please ensure that hub is installed (brew install hub)')
@@ -127,6 +132,14 @@ class MigrateToGithub
     `open https://redmine.renuo.ch/search?q=git.renuo.ch/renuo/#{@project_name}&wiki_pages=1&attachments=0&options=0`
     say('Replace all those links!')
     agree('Ready?')
+  end
+
+  def setup_gemnasium
+    say('Now the security monitoring: Gemnasium')
+    say('Go to https://gemnasium.com/dashboard and add the new project via GitHub')
+    say("Add new project --> Hosted on GitHub --> Renuo --> Check #{@project_name} and click submit")
+    agree('Ready?')
+    `open https://gemnasium.com/dashboard`
   end
 
   def setup_ci
