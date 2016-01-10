@@ -17,6 +17,10 @@ class MigrateToGithub
     say("=> #{description}")
   end
 
+  def ready
+    agree('Ready?')
+  end
+
   def run_tasks
     transfer_git
     update_readme
@@ -31,7 +35,7 @@ class MigrateToGithub
 
   def check_requirements
     say('Please ensure that hub is installed (brew install hub) and connected to your account')
-    agree('Ready?')
+    ready
   end
 
   def check_pwd
@@ -88,61 +92,61 @@ class MigrateToGithub
 
   def repo_collaborators
     task("Next, assign Renuo-Team 'renuo' to project and grant 'write' permissions")
-    agree('Ready?')
+    ready
     `open https://github.com/renuo/#{@project_name}/settings/collaboration`
   end
 
   def repo_branches
     task('Choose develop as default branch')
     task('Protect branches master and develop')
-    agree('Ready?')
+    ready
     `open https://github.com/renuo/#{@project_name}/settings/branches`
   end
 
   def copy_hooks
     task('Copy the hooks from gitlab to github. We will open two tabs this time (gitlab and github)')
-    agree('Ready?')
+    ready
     `open https://github.com/renuo/#{@project_name}/settings/hooks`
     `open https://git.renuo.ch/renuo/#{@project_name}/hooks`
   end
 
   def check_deploy
     task('Check the deployment scripts for the correct repository')
-    agree('Ready?')
+    ready
     `open https://deploy.renuo.ch/deployment_configs`
     task('Now login to the deployment server as www-data, and change the remotes. E.g.')
     cd = "cd deployments/#{@project_name}"
     say("#{cd}-master && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
     say("#{cd}-develop && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
     say("#{cd}-testing && git remote set-url origin git@github.com:renuo/#{@project_name}.git && cd ../..")
-    agree('Ready?')
+    ready
   end
 
   def rename_repo
     task("Almost done. Rename the old repo to zzz-old-#{@project_name}")
     say('   * Project name')
     say('   * Path')
-    agree('Ready?')
+    ready
     `open https://git.renuo.ch/renuo/#{@project_name}/edit`
   end
 
   def replace_other_old_links
     say('Now let\'s replace other old links in the repo!')
-    agree('Ready?')
+    ready
     `open https://github.com/renuo/#{@project_name}/search?q=git.renuo.ch`
     task('Replace all those links!')
-    agree('Ready?')
+    ready
     task('Now let\'s replace other old links in the wiki!')
     `open https://redmine.renuo.ch/search?q=git.renuo.ch/renuo/#{@project_name}&wiki_pages=1&attachments=0&options=0`
     task('Replace all those links!')
-    agree('Ready?')
+    ready
   end
 
   def setup_gemnasium
     say('Now the security monitoring: Gemnasium')
     task('Go to https://gemnasium.com/dashboard and add the new project via GitHub')
     task("Add new project --> Hosted on GitHub --> Renuo --> Check #{@project_name} and click submit")
-    agree('Ready?')
+    ready
     `open https://gemnasium.com/dashboard`
   end
 
@@ -150,10 +154,10 @@ class MigrateToGithub
     say('One last thing: CI')
     say('Find your CI script on the old CI:')
     task('Click on <project> --> Settings --> preview')
-    agree('Ready?')
+    ready
     `open https://ci.renuo.ch/`
     say("Enable TravisCI for #{@project_name}")
-    agree('Ready?')
+    ready
     `open https://magnum.travis-ci.com/profile/renuo`
   end
 
