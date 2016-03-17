@@ -67,6 +67,17 @@ module Renuo
           GeneratePassword.new.run
         end
       end
+
+      command 'application-setup-auto-config' do |c|
+        c.syntax = 'renuo application-setup-auto-config'
+        c.summary = 'Sets up the application setup using the default config'
+        c.description = 'Generates a phrase of random 0-9a-zA-Z characters. Choose a substring of it as a new password.'
+        c.example 'renuo application-setup-auto-config', 'applies the default config'
+        c.action do
+          url = 'https://www.gitbook.com/book/renuo/rails-application-setup-guide/edit#/edit/master/templates/auto_copy_files.md'
+          puts "TODO: parse and download #{url} the respective files"
+        end
+      end
     end
   end
 end
