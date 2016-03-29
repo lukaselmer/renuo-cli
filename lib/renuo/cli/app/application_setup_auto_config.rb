@@ -18,7 +18,7 @@ class ApplicationSetupAutoConfig
         @files.last.unshift text
         @next_is_hint = false
       else
-        @files << [text]
+        @files << [text.strip]
       end
       ''
     end
@@ -36,7 +36,7 @@ class ApplicationSetupAutoConfig
 
   def handle_file(file, hint)
     base_url = 'https://raw.githubusercontent.com/renuo/rails-application-setup-guide/master/templates/'
-    if agree("Overwrite #{file}? #{hint if hint}")
+    if agree("Overwrite #{file}#{" (#{hint})" if hint}?")
       `curl #{base_url}#{file} > #{file}`
     else
       puts "Skipping file #{base_url}#{file}"
