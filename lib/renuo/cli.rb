@@ -5,6 +5,7 @@ require 'renuo/cli/app/local_storage'
 require 'renuo/cli/app/migrate_to_github'
 require 'renuo/cli/app/list_large_git_files'
 require 'renuo/cli/app/generate_password'
+require 'renuo/cli/app/application_setup_auto_config'
 
 module Renuo
   class CLI
@@ -74,8 +75,7 @@ module Renuo
         c.description = 'Generates a phrase of random 0-9a-zA-Z characters. Choose a substring of it as a new password.'
         c.example 'renuo application-setup-auto-config', 'applies the default config'
         c.action do
-          url = 'https://www.gitbook.com/book/renuo/rails-application-setup-guide/edit#/edit/master/templates/auto_copy_files.md'
-          puts "TODO: parse and download #{url} the respective files"
+          ApplicationSetupAutoConfig.new.run
         end
       end
     end
