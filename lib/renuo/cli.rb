@@ -5,6 +5,7 @@ require 'renuo/cli/app/local_storage'
 require 'renuo/cli/app/migrate_to_github'
 require 'renuo/cli/app/list_large_git_files'
 require 'renuo/cli/app/generate_password'
+require 'renuo/cli/app/time_entries'
 require 'renuo/cli/app/application_setup_auto_config'
 
 module Renuo
@@ -56,6 +57,31 @@ module Renuo
                   'cd renuo-cli.git && renuo list-large-git-files'
         c.action do
           ListLargeGitFiles.new.run
+        end
+      end
+
+      command 'time-entries' do |c, _options|
+        c.syntax = 'renuo time-entries'
+        c.summary = 'Compares toggle and redmine and gives you back a report.'
+        c.description = 'Gives you a summary, if your toggle entries match the entries on redmine.'\
+        ' You can click on the links with CMD + Double Click'
+        c.option '--verbose', 'Shows all entries and not just the summary'
+        c.option '--current', 'Shows only the current week'
+
+        c.example 'renuo time-entries',
+                  'Shows the week summary of the current week and the past two weeks'
+        c.example 'renuo time-entries --verbose',
+                  'Shows all entries of the current week and the past two weeks'
+        c.example 'renuo time-entries --current',
+                  'Shows the summary of the current week'
+        c.example 'renuo time-entries --current --verbose',
+                  'Shows all entries of the current week'
+        c.example 'renuo time-entries 3,2',
+                  'Shows all entries of the calendar week as a comma-separated list'
+
+        c.action do |args, options|
+          # GeneratePassword.new.run
+          TimeEntries.new(args, options).run
         end
       end
 
