@@ -7,7 +7,6 @@ class NameDisplay
     display_name(args.join(' '))
   end
 
-
   def display_name(name)
     puts "TODO: display #{name}"
   end
