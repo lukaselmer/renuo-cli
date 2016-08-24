@@ -16,11 +16,15 @@ gem 'renuo-cli'
 
 And then execute:
 
-    $ bundle
+```sh
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install renuo-cli
+```sh
+gem install renuo-cli
+```
 
 ## Usage
 
@@ -54,10 +58,9 @@ git checkout develop
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/renuo/renuo-cli. This project is intended to
+Bug reports and pull requests are welcome on GitHub at <https://github.com/renuo/renuo-cli>. This project is intended to
 be a safe, welcoming space for collaboration, and contributors are expected to adhere to
 the [Contributor Covenant](contributor-covenant.org) code of conduct.
-
 
 ## License
 
