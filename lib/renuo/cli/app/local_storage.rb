@@ -21,7 +21,7 @@ class LocalStorage
 
   def write_config(config)
     File.write('.local_storage', config.to_json)
-    File.chmod(0600, '.local_storage')
+    File.chmod(0o600, '.local_storage')
   end
 
   def setup
