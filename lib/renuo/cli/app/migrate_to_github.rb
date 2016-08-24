@@ -1,3 +1,5 @@
+# rubocop:disable Rails/Output
+# rubocop:disable Metrics/ClassLength
 class MigrateToGithub
   def initialize(project_name)
     @project_name = project_name

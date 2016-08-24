@@ -8,6 +8,7 @@ class NameDisplay
   end
 
   def display_name(name)
+    # rubocop:disable Rails/Output
     puts "TODO: display #{name}"
   end
 

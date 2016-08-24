@@ -1,25 +1,18 @@
-AllCops:
-  RunRailsCops: false
-
-Metrics/LineLength:
-  Max: 120
-
-Style/Documentation:
-  Enabled: false
-
-Style/NonNilCheck:
-  IncludeSemanticChanges: true
-
-Metrics/ClassLength:
-  Max: 160
+inherit_from:
+  - https://raw.githubusercontent.com/renuo/rails-application-setup-guide/master/templates/.rubocop_base.yml
 
 AllCops:
   Include:
-    - '**/Rakefile'
     - 'lib/**/*'
     - 'spec/**/*'
     - '*.gemspec'
   Exclude:
     - 'bin/**/*'
+    - 'script/**/*'
     - 'lib/renuo/cli.rb'
-
+    - 'log/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'config/unicorn.rb'
+    - 'db/**/*'
+    - 'vendor/bundle/**/*'

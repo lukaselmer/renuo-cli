@@ -16,6 +16,7 @@ class ApplicationSetupAutoConfig
     if agree("Overwrite #{file}?#{" Hint: #{hint})" if hint}")
       `curl #{base_url}#{file} > #{file}`
     else
+      # rubocop:disable Rails/Output
       puts "Skipping file #{base_url}#{file}"
     end
   end
