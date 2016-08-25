@@ -6,6 +6,7 @@ require 'renuo/cli/app/migrate_to_github'
 require 'renuo/cli/app/list_large_git_files'
 require 'renuo/cli/app/generate_password'
 require 'renuo/cli/app/application_setup_auto_config'
+require 'renuo/cli/app/import_redmine_issues'
 
 module Renuo
   class CLI
@@ -76,6 +77,17 @@ module Renuo
         c.example 'renuo application-setup-auto-config', 'applies the default config'
         c.action do
           ApplicationSetupAutoConfig.new.run
+        end
+      end
+
+      command 'import-redmine-issues' do |c|
+        c.syntax = 'renuo import-redmine-issues [csv_path]'
+        c.summary = 'Import Redmine Issues from CSV'
+        c.description = 'Automatically create redmine issues from a CSV file (format project_id,subject,description,estimated_hours)'
+        c.example 'Create Redmine issues from downloaded CSV file', 'renuo import-redmine-issues ~/Downloads/issues.csv'
+        c.action do |args, _options|
+          api_key = ask('Redmine API Key: ') { |q| q.echo = '*' }
+          ImportRedmineIssues.new(api_key).run(args.first)
         end
       end
     end
