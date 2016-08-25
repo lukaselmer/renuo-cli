@@ -101,3 +101,4 @@ build/
 /pkg/
 /spec/reports/
 /tmp/
+.rubocop-https---raw-githubusercontent-com-renuo-rails-application-setup-guide-master-templates--rubocop-base-yml
