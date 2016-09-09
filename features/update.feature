@@ -1,4 +1,4 @@
-Feature: Help
+Feature: Update laptop
   In order to update my PC automatically
   As a CLI
   I want to update the system
