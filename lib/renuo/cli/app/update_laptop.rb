@@ -10,28 +10,28 @@ class UpdateLaptop
   def brewupdate
     say 'brew update'
     say ''
-    puts `$brew update`
+    puts `brew update`
     say '-------------------------------'
   end
 
   def brewupgrade
     say 'brew upgrade'
     say ''
-    puts `$brew upgrade`
+    puts `brew upgrade`
     say '-------------------------------'
   end
 
   def brewcleanup
     say 'brew cleanup'
     say ''
-    puts `$brew cleanup`
+    puts `brew cleanup`
     say '-------------------------------'
   end
 
   def mac_update
     say ' MacBook Pro Update'
     say ''
-    puts `$sudo softwareupdate -iva`
+    puts `sudo softwareupdate -iva`
     say '-------------------------------'
   end
 
