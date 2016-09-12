@@ -1,30 +1,22 @@
 class UpdateLaptop
   def run
     say_hi
-    brewupdate
-    brewupgrade
-    brewcleanup
+    run_cmd('brew update')
+    run_cmd('brew upgrade')
+    run_cmd('brew cleanup')
     mac_update
   end
 
-  def brewupdate
-    say 'brew update'
-    say ''
-    puts `brew update`
-    say '-------------------------------'
+  def say_hi
+    say 'Updating PC'
+    say 'Start Update'
+    say '_______________________________'
   end
 
-  def brewupgrade
-    say 'brew upgrade'
+  def run_cmd(name)
+    say name.to_s
     say ''
-    puts `brew upgrade`
-    say '-------------------------------'
-  end
-
-  def brewcleanup
-    say 'brew cleanup'
-    say ''
-    puts `brew cleanup`
+    puts `#{name}`
     say '-------------------------------'
   end
 
@@ -33,11 +25,7 @@ class UpdateLaptop
     say ''
     puts `sudo softwareupdate -iva`
     say '-------------------------------'
-  end
-
-  def say_hi
-    say 'Updating PC'
-    say 'Start Update'
-    say '_______________________________'
+    agree('Rebooting Now?')
+    puts `sudo shutdown -r now "Rebooting Now"`
   end
 end
