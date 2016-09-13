@@ -27,7 +27,8 @@ class UpdateLaptop
     say '_______________________________'.bold
     return unless agree('Reboot Now? (Yes/No)'.red)
     countdown(5)
-    puts `sudo shutdown -r now "Rebooting Now"`.gray.bg_red
+    say 'Rebooting Now'.gray.bg_red
+    puts `sudo shutdown -r now "Rebooting Now"`
   end
 
   def countdown(n)
