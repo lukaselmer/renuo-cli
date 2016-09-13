@@ -25,26 +25,38 @@ class UpdateLaptop
     say ''
     puts `sudo softwareupdate -ia`
     say '_______________________________'.bold
-    if agree('Reboot Now? (Yes/No)'.red)
-      countdown(5)
-      puts `sudo shutdown -r now "Rebooting Now"`.gray.bg_red
-    end
+    return unless agree('Reboot Now? (Yes/No)'.red)
+    countdown(5)
+    puts `sudo shutdown -r now "Rebooting Now"`.gray.bg_red
   end
 
-    def countdown(n)
-      for i in (n).downto(1)
+  def countdown(n)
+    n.downto(1) do |i|
       say "Reboot in #{i} Seconds (Press Ctrl + C to Stop)".red
       say `sleep 1`
     end
   end
-
 end
 
-
-#Colorized Output
+# Colorized Output
 class String
-def red;            "\e[31m#{self}\e[0m" end
-def gray;           "\e[37m#{self}\e[0m" end
-def bg_red;         "\e[41m#{self}\e[0m" end
-def bold;           "\e[1m#{self}\e[22m" end
+  def red
+    "\e[31m#{self}\e[0m"
+  end
+
+  def gray
+    "\e[37m#{self}\e[0m"
+  end
+
+  def brown
+    "\e[33m#{self}\e[0m"
+  end
+
+  def bg_red
+    "\e[41m#{self}\e[0m"
+  end
+
+  def bold
+    "\e[1m#{self}\e[22m"
+  end
 end
