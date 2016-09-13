@@ -1,5 +1,6 @@
 require 'renuo/cli/version'
 require 'rubygems'
+require 'colorize'
 require 'renuo/cli/app/name_display'
 require 'renuo/cli/app/local_storage'
 require 'renuo/cli/app/migrate_to_github'

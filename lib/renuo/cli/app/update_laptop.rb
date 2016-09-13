@@ -8,26 +8,26 @@ class UpdateLaptop
   end
 
   def say_hi
-    say 'Updating PC'.brown
-    say 'Start Update'.brown
+    say 'Updating PC'.yellow
+    say 'Start Update'.yellow
     say '_______________________________'.bold
   end
 
   def run_cmd(name)
-    say name.to_s.brown
+    say name.to_s.yellow
     say ''
     puts `#{name}`
     say '_______________________________'.bold
   end
 
   def mac_update
-    say ' MacBook Pro Update'.brown
+    say ' MacBook Pro Update'.yellow
     say ''
     puts `sudo softwareupdate -ia`
     say '_______________________________'.bold
     return unless agree('Reboot Now? (Yes/No)'.red)
     countdown(5)
-    say 'Rebooting Now'.gray.bg_red
+    say 'Rebooting Now'.white.on_red
     puts `sudo shutdown -r now "Rebooting Now"`
   end
 
@@ -36,28 +36,5 @@ class UpdateLaptop
       say "Reboot in #{i} Seconds (Press Ctrl + C to Stop)".red
       say `sleep 1`
     end
-  end
-end
-
-# Colorized Output
-class String
-  def red
-    "\e[31m#{self}\e[0m"
-  end
-
-  def gray
-    "\e[37m#{self}\e[0m"
-  end
-
-  def brown
-    "\e[33m#{self}\e[0m"
-  end
-
-  def bg_red
-    "\e[41m#{self}\e[0m"
-  end
-
-  def bold
-    "\e[1m#{self}\e[22m"
   end
 end
