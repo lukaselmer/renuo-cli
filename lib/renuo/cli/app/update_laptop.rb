@@ -12,6 +12,8 @@ class UpdateLaptop
     upgrade_brew
   end
 
+  private
+
   def setup_mas
     puts `which mas &> /dev/null  || brew install mas`
   end

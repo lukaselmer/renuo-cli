@@ -15,6 +15,8 @@ module UpgradeMacOS
     reboot if reboot_required output
   end
 
+  private
+
   def update_available(output)
     !(output.include? 'No new software available')
   end
