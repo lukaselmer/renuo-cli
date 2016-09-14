@@ -1,40 +1,32 @@
 class UpdateLaptop
   def run
     say_hi
-    run_cmd('brew update')
-    run_cmd('brew upgrade')
-    run_cmd('brew cleanup')
-    mac_update
+    run_command('brew update')
+    run_command('brew upgrade')
+    run_command('brew cleanup')
+    run_command_and_say('sudo softwareupdate -ia', ' MacBook Pro Update')
+    reboot
   end
 
   def say_hi
-    say 'Updating PC'.yellow
-    say 'Start Update'.yellow
+    say 'Updating  Mac'
+    say 'Start Update'
     say '_______________________________'.bold
   end
 
-  def run_cmd(name)
-    say name.to_s.yellow
+  def run_command_and_say(command, message)
+    say message.to_s.yellow
     say ''
-    puts `#{name}`
+    puts `#{command}`
     say '_______________________________'.bold
   end
 
-  def mac_update
-    say ' MacBook Pro Update'.yellow
-    say ''
-    puts `sudo softwareupdate -ia`
-    say '_______________________________'.bold
-    return unless agree('Reboot Now? (Yes/No)'.red)
-    countdown(5)
-    say 'Rebooting Now'.white.on_red
-    puts `sudo shutdown -r now "Rebooting Now"`
+  def run_command(command)
+    run_command_and_say command, command
   end
 
-  def countdown(n)
-    n.downto(1) do |i|
-      say "Reboot in #{i} Seconds (Press Ctrl + C to Stop)".red
-      say `sleep 1`
-    end
+  def reboot
+    say 'Rebooting in 60 Seconds'.white.on_red
+    puts `osascript -e 'tell app "loginwindow" to «event aevtrrst»'`
   end
 end
