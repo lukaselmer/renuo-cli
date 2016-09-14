@@ -8,8 +8,7 @@ class UpdateLaptop
     say_hi
 
     upgrade_apps
-    upgrade_mac_os
-    upgrade_brew
+    upgrade_brew unless upgrade_mac_os # unless macOS update needs a restart // if reboot immediately
   end
 
   private

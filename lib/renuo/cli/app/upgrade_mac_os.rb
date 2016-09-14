@@ -1,6 +1,6 @@
 module UpgradeMacOS
   def upgrade_mac_os
-    say 'Updating  macOS (this may take a while)'.yellow
+    say 'Updating  macOS. Finding available software (this may take a while)'.yellow
 
     output = `softwareupdate --list 2>&1`
     puts output
@@ -30,8 +30,9 @@ module UpgradeMacOS
   end
 
   def reboot
-    say 'Rebooting in 60 Seconds'.white.on_red
-    puts `osascript -e 'tell app "loginwindow" to «event aevtrrst»'`
+    say 'Rebooting Now'.white.on_red
+    puts `osascript -e 'tell app "System Events" to restart'`
+    true
   end
 
   def run_command(command)
