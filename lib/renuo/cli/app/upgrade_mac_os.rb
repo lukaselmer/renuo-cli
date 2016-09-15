@@ -1,6 +1,6 @@
 module UpgradeMacOS
   def upgrade_mac_os
-    say 'Updating  macOS. Finding available software (this may take a while)'.yellow
+    say "\nUpdating  macOS.\nFinding available software (this may take a while)".yellow
 
     output = `softwareupdate --list 2>&1`
     puts output
@@ -36,7 +36,7 @@ module UpgradeMacOS
   end
 
   def run_command(command)
-    say command.to_s.yellow
+    say "\n" + command.to_s.yellow
     system command
   end
 end
