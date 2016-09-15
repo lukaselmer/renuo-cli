@@ -8,7 +8,7 @@ module UpgradeMacOS
     return unless update_available output
 
     if reboot_required output
-      return unless ask_for_update_and_reboot
+      return unless agree_for_reboot
     end
 
     run_command 'softwareupdate --install --all'
@@ -25,7 +25,7 @@ module UpgradeMacOS
     output.include? '[restart]'
   end
 
-  def ask_for_update_and_reboot
+  def agree_for_reboot
     agree('Your Mac needs to be rebooted, Still continue? (Yes / No)')
   end
 
