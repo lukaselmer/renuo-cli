@@ -42,6 +42,6 @@ class UpgradeMacOS
 
   def reboot
     say 'Rebooting Now'.white.on_red
-    puts `osascript -e 'tell app "System Events" to restart'`
+    say `osascript -e 'tell app "System Events" to restart'`
   end
 end
