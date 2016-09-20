@@ -19,7 +19,7 @@ class UpgradeLaptopExecution
   end
 
   def setup_mas
-    say `which mas || brew install mas`
+    `which mas || brew install mas`
   end
 
   def upgrade_mac_os

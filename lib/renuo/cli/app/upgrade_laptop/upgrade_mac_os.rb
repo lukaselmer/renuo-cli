@@ -10,6 +10,10 @@ class UpgradeMacOS
     execute_upgrade
   end
 
+  def reboot_required?
+    @output.include? '[restart]'
+  end
+
   private
 
   def find_software_upgrades
@@ -27,12 +31,8 @@ class UpgradeMacOS
     reboot_required? && !agree_for_reboot?
   end
 
-  def reboot_required?
-    @output.include? '[restart]'
-  end
-
   def agree_for_reboot?
-    agree 'Your Mac needs to be rebooted, Still continue? (Yes / No)'
+    agree "\nYour Mac needs to be rebooted, Still continue?".red + ' (Yes / No)'
   end
 
   def execute_upgrade
