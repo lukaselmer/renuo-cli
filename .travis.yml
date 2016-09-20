@@ -3,7 +3,7 @@ cache: bundler
 rvm:
   - 2.1
   - 2.2
-  - 2.3.0
+  - 2.3.1
 before_install: gem install bundler -v 1.10.6
 install:
   - bundle install --retry=3
