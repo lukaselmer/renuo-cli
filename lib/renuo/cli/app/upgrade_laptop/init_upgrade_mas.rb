@@ -38,7 +38,7 @@ class InitUpgradeMas
   end
 
   def _required_apps
-    _apps_to_install.each  do |app|
+    _apps_to_install.each do |app|
       run_command "mas install #{app}"
       say_link app if `mas install #{app}` == ''
     end
