@@ -47,7 +47,7 @@ class InitUpgradeMas
 
   def say_link(app)
     say 'Installation failed'.red
-    say "Please download macappstores://itunes.apple.com/ch/app/id#{app}".red
+    say "Please download macappstores://itunes.apple.com/ch/app/id#{app} ".red + '(⌘ + Click)'
   end
 
   def _apps_to_install
