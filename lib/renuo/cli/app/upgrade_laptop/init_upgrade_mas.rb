@@ -34,12 +34,21 @@ class InitUpgradeMas
     numbers = 409_203_825
     text_wrangler = 404_010_395
     slack = 803_453_959
-    @required_apps = [@xcode, keynote, pages, numbers, text_wrangler, slack]
+    onedrive = 823_766_827
+    @required_apps = [@xcode, keynote, pages, numbers, text_wrangler, slack, onedrive, 897118787]
   end
 
   def _required_apps
-    _apps_to_install.each { |x| run_command "mas install #{x}" }
+    _apps_to_install.each  do |app|
+      run_command "mas install #{app}"
+      say_link app if `mas install #{app}` == ''
+    end
     run_command 'sudo xcodebuild -license' if _apps_to_install.include? @xcode
+  end
+
+  def say_link(app)
+    say 'Installation failed'.red
+    say "Please download macappstores://itunes.apple.com/ch/app/id#{app}".red
   end
 
   def _apps_to_install
