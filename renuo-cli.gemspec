@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_dependency 'commander'
+  spec.add_dependency 'colorize'
 
   spec.add_development_dependency 'bundler', '~> 1.10'
   spec.add_development_dependency 'rake', '~> 10.0'
@@ -31,5 +32,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'coveralls'
   spec.add_development_dependency 'redcarpet'
-  spec.add_development_dependency 'colorize'
 end
