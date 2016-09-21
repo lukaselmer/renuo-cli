@@ -1,25 +1,21 @@
 class UpgradeLaptopExecution
   include RunCommand
 
-  def initialize(upgrade_mac_os)
+  def initialize(upgrade_mac_os, init_upgrade_mas)
     @upgrade_mac_os = upgrade_mac_os
+    @init_upgrade_mas = init_upgrade_mas
   end
 
   def run
-    upgrade_apps
+    upgrade_mas
     upgrade_mac_os
     upgrade_brew unless mac_os_upgrade_needs_a_restart?
   end
 
   private
 
-  def upgrade_apps
-    setup_mas
-    run_command 'mas upgrade'
-  end
-
-  def setup_mas
-    `which mas || brew install mas`
+  def upgrade_mas
+    @init_upgrade_mas.run
   end
 
   def upgrade_mac_os
