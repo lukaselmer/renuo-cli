@@ -34,8 +34,7 @@ class InitUpgradeMas
     numbers = 409_203_825
     text_wrangler = 404_010_395
     slack = 803_453_959
-    onedrive = 823_766_827
-    @required_apps = [@xcode, keynote, pages, numbers, text_wrangler, slack, onedrive, 897118787]
+    @required_apps = [@xcode, keynote, pages, numbers, text_wrangler, slack]
   end
 
   def _required_apps
