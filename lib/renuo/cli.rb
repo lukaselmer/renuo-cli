@@ -7,6 +7,7 @@ require 'renuo/cli/app/migrate_to_github'
 require 'renuo/cli/app/list_large_git_files'
 require 'renuo/cli/app/generate_password'
 require 'renuo/cli/app/upgrade_laptop.rb'
+require 'renuo/cli/app/create_aws_project'
 require 'renuo/cli/app/application_setup_auto_config'
 
 module Renuo
@@ -78,6 +79,16 @@ module Renuo
         c.example 'renuo upgrade-laptop', 'upgrades your laptop'
         c.action do
           UpgradeLaptop.new.run
+        end
+      end
+
+      command 'create-aws-project' do |c|
+        c.syntax = 'renuo create-aws-project'
+        c.summary = 'Generates necessary commands for our project setup on AWS.'
+        c.description = 'Generates commands for creating AWS users, buckets an versioning policies'
+        c.example 'Setup a project (you will be asked for details)', 'renuo create-aws-project'
+        c.action do |_args, _options|
+          CreateAwsProject.new.run
         end
       end
 
