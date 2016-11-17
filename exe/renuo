@@ -1,4 +1,3 @@
 #!/usr/bin/env ruby
-
 require 'renuo/cli'
 Renuo::CLI.new.start
