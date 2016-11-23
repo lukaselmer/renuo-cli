@@ -28,19 +28,19 @@ class CreateAwsProject
   private
 
   def print_common_setup(branch)
-    say aws_common_setup(@aws_profile, @aws_region, aws_user(branch), @aws_app_group)
-    say aws_tag_setup(@aws_profile, aws_user(branch), @redmine_project)
+    say common_setup(@aws_profile, @aws_region, aws_user(branch), @aws_app_group)
+    say tag_setup(@aws_profile, aws_user(branch), @redmine_project)
   end
 
   def print_versioning_setup(branch)
-    say aws_versioning_setup(@aws_profile, aws_user(branch))
+    say versioning_setup(@aws_profile, aws_user(branch))
   end
 
   def aws_user(branch)
     [@project_name, branch, @project_purpose].compact.join('-')
   end
 
-  def aws_common_setup(profile, region, user, app_group)
+  def common_setup(profile, region, user, app_group)
     <<~SETUP_COMMANDS
       aws --profile #{profile} iam create-user --user-name #{user}
       aws --profile #{profile} iam add-user-to-group --user-name #{user} --group-name #{app_group}
@@ -49,13 +49,13 @@ class CreateAwsProject
     SETUP_COMMANDS
   end
 
-  def aws_versioning_setup(profile, bucket)
+  def versioning_setup(profile, bucket)
     <<~VERSIONING_COMMANDS
       aws --profile #{profile} s3api put-bucket-versioning --bucket #{bucket} --versioning-configuration Status=Enabled
     VERSIONING_COMMANDS
   end
 
-  def aws_tag_setup(profile, bucket, redmine_project)
+  def tag_setup(profile, bucket, redmine_project)
     <<~TAGGING_COMMANDS
       aws --profile #{profile} s3api put-bucket-tagging --bucket #{bucket} --tagging "TagSet=[{Key=redmine_project,Value=#{redmine_project}}]"
     TAGGING_COMMANDS
