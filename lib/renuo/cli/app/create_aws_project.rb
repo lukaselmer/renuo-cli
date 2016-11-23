@@ -5,7 +5,8 @@ class CreateAwsProject
     end
 
     @project_name = ask('Project name (eg: renuo-cli): ') { |q| q.validate = %r{.+}  }
-    @project_purpose = ask('Suffix describing purpose (eg: assets): ') { |q| q.default = '' }
+    @project_purpose = ask('Suffix describing purpose (eg: assets): ') { |q| q.default = 'none' }
+    @project_purpose = nil if @project_purpose.empty? || @project_purpose == 'none'
     @redmine_project = ask('Redmine project name for billing (eg: internal): ') { |q| q.validate = %r{.+}  }
     @aws_profile = 'renuo-app-setup'
     @aws_region = ask('AWS bucket region: ') { |q| q.default = 'eu-central-1' }
@@ -36,7 +37,7 @@ class CreateAwsProject
   end
 
   def aws_user(branch)
-    ([@project_name, branch, @project_purpose] - ['']).join('-')
+    [@project_name, branch, @project_purpose].compact.join('-')
   end
 
   def aws_common_setup(profile, region, user, app_group)
