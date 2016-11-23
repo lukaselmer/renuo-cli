@@ -4,10 +4,10 @@ class CreateAwsProject
       abort('You can find setup instructions here: https://redmine.renuo.ch/projects/internal/wiki/Amazon_S3#Setup-AWS-CLI')
     end
 
-    @project_name = ask('Project name (eg: renuo-cli): ') { |q| q.validate = %r{.+}  }
+    @project_name = ask('Project name (eg: renuo-cli): ') { |q| q.validate = /.+/ }
     @project_purpose = ask('Suffix describing purpose (eg: assets): ') { |q| q.default = 'none' }
     @project_purpose = nil if @project_purpose.empty? || @project_purpose == 'none'
-    @redmine_project = ask('Redmine project name for billing (eg: internal): ') { |q| q.validate = %r{.+}  }
+    @redmine_project = ask('Redmine project name for billing (eg: internal): ') { |q| q.validate = /.+/ }
     @aws_profile = 'renuo-app-setup'
     @aws_region = ask('AWS bucket region: ') { |q| q.default = 'eu-central-1' }
     @aws_app_group = 'renuo-apps-v2'
@@ -51,15 +51,13 @@ class CreateAwsProject
 
   def aws_versioning_setup(profile, bucket)
     <<~VERSIONING_COMMANDS
-      aws --profile #{profile} s3api put-bucket-versioning --bucket #{bucket} --versioning-configuration \
-    Status=Enabled
+      aws --profile #{profile} s3api put-bucket-versioning --bucket #{bucket} --versioning-configuration Status=Enabled
     VERSIONING_COMMANDS
   end
 
   def aws_tag_setup(profile, bucket, redmine_project)
-    <<~VERSIONING_COMMANDS
-      aws --profile #{profile} s3api put-bucket-tagging --bucket #{bucket} --tagging \
-    "TagSet=[{Key=redmine_project,Value=#{redmine_project}}]"
-    VERSIONING_COMMANDS
+    <<~TAGGING_COMMANDS
+      aws --profile #{profile} s3api put-bucket-tagging --bucket #{bucket} --tagging "TagSet=[{Key=redmine_project,Value=#{redmine_project}}]"
+    TAGGING_COMMANDS
   end
 end
