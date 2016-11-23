@@ -85,7 +85,7 @@ module Renuo
       command 'create-aws-project' do |c|
         c.syntax = 'renuo create-aws-project'
         c.summary = 'Generates necessary commands for our project setup on AWS.'
-        c.description = <<~DESCRIPTION
+        c.description = <<-DESCRIPTION
           This creates commands for creating AWS users, buckets an versioning policies.
 
           You will be asked for:

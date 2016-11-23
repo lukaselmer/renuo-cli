@@ -41,7 +41,7 @@ class CreateAwsProject
   end
 
   def common_setup(profile, region, user, app_group)
-    <<~SETUP_COMMANDS
+    <<-SETUP_COMMANDS
       aws --profile #{profile} iam create-user --user-name #{user}
       aws --profile #{profile} iam add-user-to-group --user-name #{user} --group-name #{app_group}
       aws --profile #{profile} iam create-access-key --user-name #{user}
@@ -50,13 +50,13 @@ class CreateAwsProject
   end
 
   def versioning_setup(profile, bucket)
-    <<~VERSIONING_COMMANDS
+    <<-VERSIONING_COMMANDS
       aws --profile #{profile} s3api put-bucket-versioning --bucket #{bucket} --versioning-configuration Status=Enabled
     VERSIONING_COMMANDS
   end
 
   def tag_setup(profile, bucket, redmine_project)
-    <<~TAGGING_COMMANDS
+    <<-TAGGING_COMMANDS
       aws --profile #{profile} s3api put-bucket-tagging --bucket #{bucket} --tagging "TagSet=[{Key=redmine_project,Value=#{redmine_project}}]"
     TAGGING_COMMANDS
   end
