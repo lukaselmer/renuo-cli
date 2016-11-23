@@ -4,9 +4,9 @@ class CreateAwsProject
       abort('You can find setup instructions here: https://redmine.renuo.ch/projects/internal/wiki/Amazon_S3#Setup-AWS-CLI')
     end
 
-    @project_name = ask('Project name (eg: lawoon-frontend): ')
+    @project_name = ask('Project name (eg: renuo-cli): ')
     @project_purpose = ask('Suffix describing purpose (eg: asset): ')
-    @redmine_project = ask('Redmine project name for billing (eg: lawoon): ')
+    @redmine_project = ask('Redmine project name for billing (eg: internal): ')
     @aws_profile = 'renuo-app-setup'
     @aws_region = ask('AWS bucket region: ') { |q| q.default = 'eu-central-1' }
     @aws_app_group = 'renuo-apps-v2'
