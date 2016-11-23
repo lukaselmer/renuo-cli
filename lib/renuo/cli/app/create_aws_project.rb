@@ -1,6 +1,8 @@
 class CreateAwsProject
   def initialize
-    agree('Did you set up AWSCLI and the IAM profile (renuo-app-setup) yet?')
+    unless agree('Did you set up AWSCLI and the IAM profile (renuo-app-setup) yet?')
+      abort('You can find setup instructions here: https://redmine.renuo.ch/projects/internal/wiki/Amazon_S3#Setup-AWS-CLI')
+    end
 
     @project_name = ask('Project name (eg: lawoon-frontend): ')
     @project_purpose = ask('Suffix describing purpose (eg: asset): ')
