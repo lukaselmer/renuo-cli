@@ -4,9 +4,9 @@ class CreateAwsProject
       abort('You can find setup instructions here: https://redmine.renuo.ch/projects/internal/wiki/Amazon_S3#Setup-AWS-CLI')
     end
 
-    @project_name = ask('Project name (eg: renuo-cli): ')
-    @project_purpose = ask('Suffix describing purpose (eg: asset): ')
-    @redmine_project = ask('Redmine project name for billing (eg: internal): ')
+    @project_name = ask('Project name (eg: renuo-cli): ') { |q| q.validate = %r{.+}  }
+    @project_purpose = ask('Suffix describing purpose (eg: assets): ') { |q| q.default = '' }
+    @redmine_project = ask('Redmine project name for billing (eg: internal): ') { |q| q.validate = %r{.+}  }
     @aws_profile = 'renuo-app-setup'
     @aws_region = ask('AWS bucket region: ') { |q| q.default = 'eu-central-1' }
     @aws_app_group = 'renuo-apps-v2'
@@ -36,7 +36,7 @@ class CreateAwsProject
   end
 
   def aws_user(branch)
-    ([@project_name, branch, @project_purpose] - ['', nil]).join('-')
+    ([@project_name, branch, @project_purpose] - ['']).join('-')
   end
 
   def aws_common_setup(profile, region, user, app_group)
