@@ -85,7 +85,19 @@ module Renuo
       command 'create-aws-project' do |c|
         c.syntax = 'renuo create-aws-project'
         c.summary = 'Generates necessary commands for our project setup on AWS.'
-        c.description = 'Generates commands for creating AWS users, buckets an versioning policies'
+        c.description = <<~DESCRIPTION
+          This creates commands for creating AWS users, buckets an versioning policies.
+
+          You will be asked for:
+          - project name and suffix so that the script can respect our naming conventions
+          - the Redmine project name to tag buckets for AWS billing references
+
+          The generated commands do the following:
+          - create an IAM user for each environment (master, develop, testing) and add it to the renuo apps group.
+          - create S3 buckets for each user who owns it
+          - tag the buckets
+          - enable versioning for master buckets
+        DESCRIPTION
         c.example 'Setup a project (you will be asked for details)', 'renuo create-aws-project'
         c.action do |_args, _options|
           CreateAwsProject.new.run
